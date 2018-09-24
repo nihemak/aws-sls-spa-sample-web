@@ -1,0 +1,11 @@
+version: 0.2
+phases:
+  build:
+    commands:
+      - aws s3 rm s3://$DEPLOY_BUCKET --recursive
+  post_build:
+    commands:
+      - touch web_destroy.fin
+artifacts:
+  files:
+    - web_destroy.fin
