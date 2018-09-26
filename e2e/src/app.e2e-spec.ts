@@ -9,6 +9,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to aws-sls-spa-sample-web!');
+    expect(page.getParagraphText())
+      .toEqual('Welcome to aws-sls-spa-sample-web!');
   });
 });
