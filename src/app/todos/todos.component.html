@@ -7,14 +7,4 @@
   </li>
 </ul>
 
-<div *ngIf="selectedTodo">
-
-    <h2>{{selectedTodo.text}} Details</h2>
-    <div><span>id: </span>{{selectedTodo.id}}</div>
-    <div>
-      <label>text:
-        <input [(ngModel)]="selectedTodo.text" placeholder="text">
-      </label>
-    </div>
-
-</div>
+<app-todo-detail [todo]="selectedTodo"></app-todo-detail>
