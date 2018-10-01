@@ -1,7 +1,20 @@
-<h2>{{todo.text}} Details</h2>
-<div><span>id: </span>{{todo.id}}</div>
-<div>
-  <label>text:
-    <input [(ngModel)]="todo.text" placeholder="text">
-  </label>
+<h2>My Todos</h2>
+<ul>
+  <li *ngFor="let todo of todos"
+      [class.selected]="todo === selectedTodo"
+      (click)="onSelect(todo)">
+    <span>{{todo.id}}</span> {{todo.text}}
+  </li>
+</ul>
+
+<div *ngIf="selectedTodo">
+
+    <h2>{{selectedTodo.text}} Details</h2>
+    <div><span>id: </span>{{selectedTodo.id}}</div>
+    <div>
+      <label>text:
+        <input [(ngModel)]="selectedTodo.text" placeholder="text">
+      </label>
+    </div>
+
 </div>
