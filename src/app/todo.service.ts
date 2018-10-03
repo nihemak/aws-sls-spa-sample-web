@@ -13,4 +13,8 @@ export class TodoService {
   getTodos(): Observable<Todo[]> {
     return of(TODOS);
   }
+
+  getTodo(id: number): Observable<Todo|undefined> {
+    return of(TODOS.find(todo => todo.id === id));
+  }
 }

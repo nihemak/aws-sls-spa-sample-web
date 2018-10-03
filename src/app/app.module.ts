@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodosComponent } from './todos/todos.component';
 import { TodoDetailComponent } from './todo-detail/todo-detail.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodosComponent,
-    TodoDetailComponent
+    TodoDetailComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
