@@ -7,6 +7,7 @@ describe('TodoService', () => {
 
   it('should be created', () => {
     const service: TodoService = TestBed.get(TodoService);
-    expect(service).toBeTruthy();
+    expect(service)
+      .toBeTruthy();
   });
 });
