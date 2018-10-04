@@ -21,4 +21,8 @@ export class DashboardComponent implements OnInit {
       .getTodos()
       .subscribe(todos => this.todos = todos.slice(1, 5));
   }
+
+  trackByTodos(_index: number, todo: Todo): number | undefined {
+    return todo.id;
+  }
 }

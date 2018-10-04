@@ -1,6 +1,6 @@
 <h3 i18n="@@DashboardTitle">Top Todos</h3>
 <div class="grid grid-pad">
-  <a *ngFor="let todo of todos" class="col-1-4"
+  <a *ngFor="let todo of todos; trackBy: trackByTodos" class="col-1-4"
      routerLink="/detail/{{todo.id}}">
     <div class="module todo">
       <h4>{{ todo.text }}</h4>

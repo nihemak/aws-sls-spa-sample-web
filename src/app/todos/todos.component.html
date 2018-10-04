@@ -1,6 +1,6 @@
 <h2 i18n="@@TodosTitle">My Todos</h2>
 <ul>
-  <li *ngFor="let todo of todos">
+  <li *ngFor="let todo of todos; trackBy: trackByTodos">
     <a routerLink="/detail/{{todo.id}}">
       <span>{{ todo.id }}</span> {{ todo.text }}
     </a>

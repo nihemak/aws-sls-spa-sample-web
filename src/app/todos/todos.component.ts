@@ -21,4 +21,8 @@ export class TodosComponent implements OnInit {
       .getTodos()
       .subscribe(todos => this.todos = todos);
   }
+
+  trackByTodos(_index: number, todo: Todo): number | undefined {
+    return todo.id;
+  }
 }
