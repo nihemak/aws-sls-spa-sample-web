@@ -18,7 +18,7 @@ export class TodoDetailComponent implements OnInit {
     private location: Location
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getTodo();
   }
 

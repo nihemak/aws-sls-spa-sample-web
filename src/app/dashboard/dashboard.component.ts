@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private todoService: TodoService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getTodos();
   }
 
