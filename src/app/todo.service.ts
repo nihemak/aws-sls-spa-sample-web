@@ -10,7 +10,7 @@ export class TodoService {
 
   constructor() { }
 
-  getTodos(): Observable<Todo[]> {
+  getTodos(): Observable<Array<Todo>> {
     return of(TODOS);
   }
 

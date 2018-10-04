@@ -1,6 +1,6 @@
 import { Todo } from './todo';
 
-export const TODOS: Todo[] = [
+export const TODOS: Array<Todo> = [
   { id: 11, text: 'test todo1' },
   { id: 12, text: 'test todo2' },
   { id: 13, text: 'test todo3' },

@@ -8,7 +8,7 @@ import { TodoService } from '../todo.service';
   styleUrls: ['./todos.component.scss']
 })
 export class TodosComponent implements OnInit {
-  todos?: Todo[];
+  todos?: Array<Todo>;
 
   constructor(private todoService: TodoService) { }
 
