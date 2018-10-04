@@ -1,12 +1,12 @@
 <div *ngIf="todo">
 
-    <h2>{{ todo.text }} Details</h2>
-    <div><span>id: </span>{{ todo.id }}</div>
+    <h2 i18n="@@DetailTitle">{{ todo.text }} Details</h2>
+    <div><span i18n="@@DetailId">id: </span>{{ todo.id }}</div>
     <div>
-      <label>text:
+      <label i18n="@@DetailText">text:
         <input [(ngModel)]="todo.text" placeholder="text">
       </label>
     </div>
 
 </div>
-<button (click)="goBack()">go back</button>
+<button (click)="goBack()" i18n="@@DetailBack">go back</button>
