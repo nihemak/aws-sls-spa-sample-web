@@ -1,4 +1,12 @@
 <h2 i18n="@@TodosTitle">My Todos</h2>
+
+<div>
+  <label i18n="@@CreateText">text:
+    <input #newTodo placeholder="text">
+  </label>
+</div>
+<button (click)="addTodo(newTodo.value)" i18n="@@AddButton">add</button>
+
 <ul>
   <li *ngFor="let todo of todos; trackBy: trackByTodos">
     <a routerLink="/detail/{{todo.id}}">

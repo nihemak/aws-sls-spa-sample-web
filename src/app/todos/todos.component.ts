@@ -22,7 +22,11 @@ export class TodosComponent implements OnInit {
       .subscribe(todos => this.todos = todos);
   }
 
-  trackByTodos(_index: number, todo: Todo): number | undefined {
+  addTodo(newTodo: string): void {
+    this.todoService.addTodo(newTodo);
+  }
+
+  trackByTodos(_index: number, todo: Todo): string | undefined {
     return todo.id;
   }
 }

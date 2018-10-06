@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
       .subscribe(todos => this.todos = todos.slice(1, 5));
   }
 
-  trackByTodos(_index: number, todo: Todo): number | undefined {
+  trackByTodos(_index: number, todo: Todo): string | undefined {
     return todo.id;
   }
 }
