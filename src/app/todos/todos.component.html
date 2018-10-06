@@ -7,11 +7,12 @@
 </div>
 <button (click)="addTodo(newTodo.value)" i18n="@@AddButton">add</button>
 
-<ul>
-  <li *ngFor="let todo of todos; trackBy: trackByTodos">
-    <a routerLink="/detail/{{todo.id}}">
-      <span>{{ todo.id }}</span> {{ todo.text }}
-    </a>
-    <button (click)="deleteTodo(todo.id)" i18n="@@DeleteButton">delete</button>
-  </li>
-</ul>
+<div *ngFor="let todo of todos; trackBy: trackByTodos">
+  <div>
+    {{ todo.text }}
+  </div>
+    <div>
+      <app-todo-editor [todo]="todo"></app-todo-editor>
+      <button (click)="deleteTodo(todo.id)" i18n="@@DeleteButton">delete</button>
+  </div>
+</div>

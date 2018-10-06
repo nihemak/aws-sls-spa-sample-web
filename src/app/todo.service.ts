@@ -24,6 +24,15 @@ export class TodoService {
     TodoService.todos.push({ id: UUID.v4(), text: newTodo });
   }
 
+  updateTodo(id: string, text: string): void {
+    TodoService.todos.map(todo => {
+      if (todo.id === id) {
+        todo.text = text;
+      }
+      return todo;
+    });
+  }
+
   deleteTodo(id: string): void {
     TodoService.todos = TodoService.todos.filter(todo => todo.id !== id);
   }
