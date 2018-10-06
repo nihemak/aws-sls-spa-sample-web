@@ -26,6 +26,11 @@ export class TodosComponent implements OnInit {
     this.todoService.addTodo(newTodo);
   }
 
+  deleteTodo(id: string): void {
+    this.todoService.deleteTodo(id);
+    this.getTodos();
+  }
+
   trackByTodos(_index: number, todo: Todo): string | undefined {
     return todo.id;
   }

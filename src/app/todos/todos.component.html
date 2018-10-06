@@ -12,5 +12,6 @@
     <a routerLink="/detail/{{todo.id}}">
       <span>{{ todo.id }}</span> {{ todo.text }}
     </a>
+    <button (click)="deleteTodo(todo.id)" i18n="@@DeleteButton">delete</button>
   </li>
 </ul>
