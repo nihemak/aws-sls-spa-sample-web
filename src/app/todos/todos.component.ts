@@ -9,6 +9,7 @@ import { TodoService } from '../todo.service';
 })
 export class TodosComponent implements OnInit {
   todos?: Array<Todo>;
+  showDone = false;
 
   constructor(private todoService: TodoService) { }
 
