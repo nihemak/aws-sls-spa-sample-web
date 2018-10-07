@@ -14,13 +14,13 @@ export class TodoEditorComponent implements OnInit {
 
   constructor(private todoService: TodoService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (this.todo) {
       this.text.setValue(this.todo.text);
     }
   }
 
-  updateText() {
+  updateText(): void {
     if (this.todo) {
       this.todoService.updateTodo(this.todo.id, this.text.value);
     }
