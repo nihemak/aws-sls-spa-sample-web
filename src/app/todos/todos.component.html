@@ -9,10 +9,11 @@
 
 <div *ngFor="let todo of todos; trackBy: trackByTodos">
   <div>
+    <button (click)="doneTodo(todo.id)" i18n="@@DoneButton" [disabled]="todo.checked">done</button>
     {{ todo.text }}
   </div>
-    <div>
-      <app-todo-editor [todo]="todo"></app-todo-editor>
-      <button (click)="deleteTodo(todo.id)" i18n="@@DeleteButton">delete</button>
+  <div *ngIf="! todo.checked">
+    <app-todo-editor [todo]="todo"></app-todo-editor>
+    <button (click)="deleteTodo(todo.id)" i18n="@@DeleteButton">delete</button>
   </div>
 </div>

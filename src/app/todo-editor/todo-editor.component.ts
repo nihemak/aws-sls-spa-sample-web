@@ -21,7 +21,7 @@ export class TodoEditorComponent implements OnInit {
   }
 
   updateText() {
-    if (this.todo && this.todo.id) {
+    if (this.todo) {
       this.todoService.updateTodo(this.todo.id, this.text.value);
     }
   }
