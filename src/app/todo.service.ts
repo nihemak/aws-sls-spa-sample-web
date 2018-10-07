@@ -36,6 +36,7 @@ export class TodoService {
         todo.text = text;
         todo.updatedAt = new Date().getTime();
       }
+
       return todo;
     });
   }
@@ -46,6 +47,7 @@ export class TodoService {
         todo.checked = true;
         todo.updatedAt = new Date().getTime();
       }
+
       return todo;
     });
   }
