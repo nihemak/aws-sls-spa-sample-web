@@ -8,7 +8,7 @@
 <button (click)="addTodo(newTodo.value)" i18n="@@AddButton">add</button>
 
 <div>
-  <input type="checkbox" [(ngModel)]="showDone">show done
+  <input type="checkbox" [(ngModel)]="showDone"><span i18n="@@ShowDoneCheck">show done</span>
 </div>
 
 <div *ngFor="let todo of todos; trackBy: trackByTodos">
