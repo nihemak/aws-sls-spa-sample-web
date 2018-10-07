@@ -1,0 +1,25 @@
+<h2 i18n="@@TodosTitle">My Todos</h2>
+
+<div>
+  <label i18n="@@CreateText">text:
+    <input #newTodo placeholder="text">
+  </label>
+</div>
+<button (click)="addTodo(newTodo.value)" i18n="@@AddButton">add</button>
+
+<div>
+  <input type="checkbox" [(ngModel)]="showDone"><span i18n="@@ShowDoneCheck">show done</span>
+</div>
+
+<div *ngFor="let todo of todos; trackBy: trackByTodos">
+  <div *ngIf="! todo.checked || showDone">
+    <div>
+      <button (click)="doneTodo(todo.id)" i18n="@@DoneButton" [disabled]="todo.checked">done</button>
+      {{ todo.text }}
+    </div>
+    <div *ngIf="! todo.checked">
+      <app-todo-editor [todo]="todo"></app-todo-editor>
+      <button (click)="deleteTodo(todo.id)" i18n="@@DeleteButton">delete</button>
+    </div>
+  </div>
+</div>
