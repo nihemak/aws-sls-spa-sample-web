@@ -11,7 +11,7 @@
   <input type="checkbox" [(ngModel)]="showDone"><span i18n="@@ShowDoneCheck">show done</span>
 </div>
 
-<div *ngFor="let todo of todos; trackBy: trackByTodos">
+<div *ngFor="let todo of todos$ | async; trackBy: trackByTodos">
   <div *ngIf="! todo.checked || showDone">
     <div>
       <button (click)="doneTodo(todo.id)" i18n="@@DoneButton" [disabled]="todo.checked">done</button>
