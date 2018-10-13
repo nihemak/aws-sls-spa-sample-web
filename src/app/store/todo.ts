@@ -76,7 +76,7 @@ export function reducer(state: State = initialState, action: TodoAction): State 
     case DONE: {
       const newTodos = state.todos.map(todo => {
         let newTodo = todo;
-        if (todo.id == action.payload.id) {
+        if (todo.id === action.payload.id) {
           newTodo = { ...todo, checked: true, updatedAt: new Date().getTime() };
         }
 
@@ -88,7 +88,7 @@ export function reducer(state: State = initialState, action: TodoAction): State 
     case UPDATE: {
       const newTodos = state.todos.map(todo => {
         let newTodo = todo;
-        if (todo.id == action.payload.id) {
+        if (todo.id === action.payload.id) {
           newTodo = { ...todo, text: action.payload.text, updatedAt: new Date().getTime() };
         }
 
