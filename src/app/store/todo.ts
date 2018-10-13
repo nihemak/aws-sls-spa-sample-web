@@ -45,7 +45,7 @@ export class Delete implements TodoAction {
  * State
  */
 export interface State {
-  readonly todos: Todo[];
+  readonly todos: Array<Todo>;
 }
 
 export const getTodos = (state: State) => state.todos;
@@ -83,12 +83,12 @@ export function reducer(state: State = initialState, action: TodoAction): State 
       return { ...state, todos: newTodos };
     }
     case UPDATE: {
-      let newTodos = state.todos.map(todo => {
+      const newTodos = state.todos.map(todo => {
         let newTodo = todo;
         if (todo.id == action.payload.id) {
           newTodo = { ...todo, text: action.payload.text, updatedAt: new Date().getTime() };
         }
-        return newTodo
+        return newTodo;
       });
       return { ...state, todos: newTodos };
     }

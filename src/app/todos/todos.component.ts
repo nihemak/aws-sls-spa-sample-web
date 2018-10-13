@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Todo } from '../todo';
 import { AppState, getTodos } from '../store/reducers';
 import {
-  FindAll as TodoFindAll,
   Create as TodoCreate,
+  Delete as TodoDelete,
   Done as TodoDone,
-  Delete as TodoDelete
+  FindAll as TodoFindAll
 } from '../store/todo';
 
 @Component({
@@ -16,7 +16,7 @@ import {
   styleUrls: ['./todos.component.scss']
 })
 export class TodosComponent implements OnInit {
-  todos$: Observable<Todo[]>;
+  todos$: Observable<Array<Todo>>;
   showDone = false;
 
   constructor(
@@ -34,15 +34,15 @@ export class TodosComponent implements OnInit {
   }
 
   addTodo(text: string): void {
-    this.store.dispatch(new TodoCreate({ text: text }));
+    this.store.dispatch(new TodoCreate({ text }));
   }
 
   doneTodo(id: string): void {
-    this.store.dispatch(new TodoDone({ id: id }));
+    this.store.dispatch(new TodoDone({ id }));
   }
 
   deleteTodo(id: string): void {
-    this.store.dispatch(new TodoDelete({ id: id }));
+    this.store.dispatch(new TodoDelete({ id }));
   }
 
   trackByTodos(_index: number, todo: Todo): string | undefined {

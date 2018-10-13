@@ -1,12 +1,12 @@
 import {
   ActionReducerMap,
-  createSelector,
-  createFeatureSelector
+  createFeatureSelector,
+  createSelector
 } from '@ngrx/store';
 import {
-  State as TodoState,
+  getTodos as getTodosFromState,
   reducer as todoReducer,
-  getTodos as getTodosFromState
+  State as TodoState
 } from './todo';
 
 export interface AppState {
