@@ -70,6 +70,7 @@ export function reducer(state: State = initialState, action: TodoAction): State 
         createdAt: new Date().getTime(),
         updatedAt: new Date().getTime()
       };
+
       return { ...state, todos: [...state.todos, newTodo] };
     }
     case DONE: {
@@ -78,8 +79,10 @@ export function reducer(state: State = initialState, action: TodoAction): State 
         if (todo.id == action.payload.id) {
           newTodo = { ...todo, checked: true, updatedAt: new Date().getTime() };
         }
+
         return newTodo;
       });
+
       return { ...state, todos: newTodos };
     }
     case UPDATE: {
@@ -88,12 +91,15 @@ export function reducer(state: State = initialState, action: TodoAction): State 
         if (todo.id == action.payload.id) {
           newTodo = { ...todo, text: action.payload.text, updatedAt: new Date().getTime() };
         }
+
         return newTodo;
       });
+
       return { ...state, todos: newTodos };
     }
     case DELETE: {
       const newTodos = state.todos.filter(todo => todo.id !== action.payload.id);
+
       return { ...state, todos: newTodos };
     }
     default:
