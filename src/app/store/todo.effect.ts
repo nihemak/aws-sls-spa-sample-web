@@ -37,6 +37,7 @@ export class TodoEffects {
   @Effect() findAll$: Observable<Action> = this.actions$.pipe(
     ofType<FindAll>(FIND_ALL),
     switchMap(_action => {
+
       return this.todoService
         .getTodos()
         .pipe(
@@ -50,6 +51,7 @@ export class TodoEffects {
     ofType<Create>(CREATE),
     concatMap(action => {
       const { text } = action.payload;
+
       return this.todoService
         .addTodo(text)
         .pipe(
@@ -63,6 +65,7 @@ export class TodoEffects {
     ofType<Done>(DONE),
     concatMap(action => {
       const { id } = action.payload;
+
       return this.todoService
         .doneTodo(id)
         .pipe(
@@ -76,6 +79,7 @@ export class TodoEffects {
     ofType<Update>(UPDATE),
     concatMap(action => {
       const { id, text } = action.payload;
+
       return this.todoService
         .updateTodo(id, text)
         .pipe(
@@ -89,6 +93,7 @@ export class TodoEffects {
     ofType<Delete>(DELETE),
     concatMap(action => {
       const { id } = action.payload;
+
       return this.todoService
         .deleteTodo(id)
         .pipe(

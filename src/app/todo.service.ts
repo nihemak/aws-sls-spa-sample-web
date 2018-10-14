@@ -29,6 +29,7 @@ export class TodoService {
       updatedAt: new Date().getTime()
     };
     TodoService.todos = [...TodoService.todos, newTodo];
+
     return of(newTodo);
   }
 
