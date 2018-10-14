@@ -97,7 +97,7 @@ export class TodoEffects {
       return this.todoService
         .deleteTodo(id)
         .pipe(
-          map(id => new DeleteSuccess({ id })),
+          map(() => new DeleteSuccess({ id })),
           catchError(error => of(new DeleteFail({ error })))
         );
     })
