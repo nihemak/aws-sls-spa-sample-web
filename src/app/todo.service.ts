@@ -23,12 +23,12 @@ export class TodoService {
   addTodo(text: string): Observable<Todo> {
     const newTodo = {
       id: UUID.v4(),
-      text: text,
+      text,
       checked: false,
       createdAt: new Date().getTime(),
       updatedAt: new Date().getTime()
     };
-    TodoService.todos = [...TodoService.todos, newTodo]
+    TodoService.todos = [...TodoService.todos, newTodo];
     return of(newTodo);
   }
 

@@ -31,7 +31,7 @@ export class FindAll implements TodoAction {
 
 export class FindAllSuccess implements TodoAction {
   readonly type = FIND_ALL_SUCCESS;
-  constructor(public payload: { todos: Todo[] }) {}
+  constructor(public payload: { todos: Array<Todo> }) {}
 }
 
 export class FindAllFail implements TodoAction {
