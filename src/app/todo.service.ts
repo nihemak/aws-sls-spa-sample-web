@@ -33,8 +33,8 @@ export class TodoService {
     return of(newTodo);
   }
 
-  updateTodo(id: string, text: string): Observable<Todo|null> {
-    let newTodo = null;
+  updateTodo(id: string, text: string): Observable<Todo|undefined> {
+    let newTodo;
     TodoService.todos = TodoService.todos.map(todo => {
       if (todo.id === id) {
         todo = { ...todo, text, updatedAt: new Date().getTime() };
@@ -47,8 +47,8 @@ export class TodoService {
     return of(newTodo);
   }
 
-  doneTodo(id: string): Observable<Todo|null> {
-    let newTodo = null;
+  doneTodo(id: string): Observable<Todo|undefined> {
+    let newTodo;
     TodoService.todos = TodoService.todos.map(todo => {
       if (todo.id === id) {
         todo = { ...todo, checked: true, updatedAt: new Date().getTime() };

@@ -61,7 +61,7 @@ export class Done implements TodoAction {
 
 export class DoneSuccess implements TodoAction {
   readonly type = DONE_SUCCESS;
-  constructor(public payload: { todo: Todo | null }) {}
+  constructor(public payload: { todo: Todo | undefined }) {}
 }
 
 export class DoneFail implements TodoAction {
@@ -76,7 +76,7 @@ export class Update implements TodoAction {
 
 export class UpdateSuccess implements TodoAction {
   readonly type = UPDATE_SUCCESS;
-  constructor(public payload: { todo: Todo | null }) {}
+  constructor(public payload: { todo: Todo | undefined }) {}
 }
 
 export class UpdateFail implements TodoAction {
