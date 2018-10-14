@@ -20,39 +20,49 @@ export class TodoService {
     return of(TodoService.todos.find(todo => todo.id === id));
   }
 
-  addTodo(newTodo: string): void {
-    TodoService.todos.push({
+  addTodo(text: string): Observable<Todo> {
+    const newTodo = {
       id: UUID.v4(),
-      text: newTodo,
+      text: text,
       checked: false,
       createdAt: new Date().getTime(),
       updatedAt: new Date().getTime()
-    });
+    };
+    TodoService.todos = [...TodoService.todos, newTodo]
+    return of(newTodo);
   }
 
-  updateTodo(id: string, text: string): void {
+  updateTodo(id: string, text: string): Observable<Todo|null> {
+    let newTodo = null;
     TodoService.todos = TodoService.todos.map(todo => {
       if (todo.id === id) {
-        todo.text = text;
-        todo.updatedAt = new Date().getTime();
+        todo = { ...todo, text, updatedAt: new Date().getTime() };
+        newTodo = todo;
       }
 
       return todo;
     });
+
+    return of(newTodo);
   }
 
-  doneTodo(id: string): void {
+  doneTodo(id: string): Observable<Todo|null> {
+    let newTodo = null;
     TodoService.todos = TodoService.todos.map(todo => {
       if (todo.id === id) {
-        todo.checked = true;
-        todo.updatedAt = new Date().getTime();
+        todo = { ...todo, checked: true, updatedAt: new Date().getTime() };
+        newTodo = todo;
       }
 
       return todo;
     });
+
+    return of(newTodo);
   }
 
-  deleteTodo(id: string): void {
+  deleteTodo(id: string): Observable<string> {
     TodoService.todos = TodoService.todos.filter(todo => todo.id !== id);
+
+    return of(id);
   }
 }
