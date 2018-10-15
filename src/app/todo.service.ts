@@ -1,69 +1,65 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Todo } from './todo';
-import { TODOS } from './mock-todos';
 import * as UUID from 'uuid';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
-  private static todos: Array<Todo> = TODOS;
+  private baseUrl = 'mock-server/';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getTodos(): Observable<Array<Todo>> {
-    return of(TodoService.todos);
+    const url = this.baseUrl + 'todos';
+    return this.http.get<Todo[]>(url)
   }
 
   getTodo(id: string): Observable<Todo|undefined> {
-    return of(TodoService.todos.find(todo => todo.id === id));
+    const url = this.baseUrl + 'todos/' + id;
+    return this.http.get<Todo>(url)
   }
 
   addTodo(text: string): Observable<Todo> {
-    const newTodo = {
+    const url = this.baseUrl + 'todos';
+    const todo = {
       id: UUID.v4(),
       text,
       checked: false,
       createdAt: new Date().getTime(),
       updatedAt: new Date().getTime()
     };
-    TodoService.todos = [...TodoService.todos, newTodo];
-
-    return of(newTodo);
+    return this.http.post<Todo>(url, todo);
   }
 
   updateTodo(id: string, text: string): Observable<Todo|undefined> {
-    let newTodo;
-    TodoService.todos = TodoService.todos.map(todo => {
-      if (todo.id === id) {
-        todo = { ...todo, text, updatedAt: new Date().getTime() };
-        newTodo = todo;
-      }
-
-      return todo;
-    });
-
-    return of(newTodo);
+    const url = this.baseUrl + 'todos';
+    const todo = {
+      id,
+      text: text,
+      updatedAt: new Date().getTime()
+    };
+    return this.http.put<Todo>(url, todo, httpOptions);
   }
 
   doneTodo(id: string): Observable<Todo|undefined> {
-    let newTodo;
-    TodoService.todos = TodoService.todos.map(todo => {
-      if (todo.id === id) {
-        todo = { ...todo, checked: true, updatedAt: new Date().getTime() };
-        newTodo = todo;
-      }
-
-      return todo;
-    });
-
-    return of(newTodo);
+    const url = this.baseUrl + 'todos';
+    const todo = {
+      id,
+      checked: true,
+      updatedAt: new Date().getTime()
+    };
+    return this.http.put<Todo>(url, todo, httpOptions);
   }
 
-  deleteTodo(id: string): Observable<string> {
-    TodoService.todos = TodoService.todos.filter(todo => todo.id !== id);
-
-    return of(id);
+  deleteTodo(id: string): Observable<Todo> {
+    const url = this.baseUrl + 'todos/' + id;
+    return this.http.delete<Todo>(url, httpOptions);
   }
 }
