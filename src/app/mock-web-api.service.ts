@@ -19,4 +19,13 @@ export class MockWebApiService implements InMemoryDbService {
   genId(_todos: Todo[]): string {
     return UUID.v4();
   }
+
+  public responseInterceptor(responseOptions: any, requestInfo: any): any {
+    if (requestInfo.collectionName === 'todos' &&
+        requestInfo.method === 'delete' &&
+        responseOptions.status === 204) {
+      responseOptions.body = requestInfo.id;
+    }
+    return responseOptions;
+  }
 }
