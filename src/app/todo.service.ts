@@ -39,7 +39,7 @@ export class TodoService {
   }
 
   updateTodo(id: string, text: string): Observable<Todo|undefined> {
-    const url = this.baseUrl + 'todos';
+    const url = this.baseUrl + 'todos/' + id;
     const todo = {
       id,
       text: text,
@@ -49,7 +49,7 @@ export class TodoService {
   }
 
   doneTodo(id: string): Observable<Todo|undefined> {
-    const url = this.baseUrl + 'todos';
+    const url = this.baseUrl + 'todos/' + id;
     const todo = {
       id,
       checked: true,

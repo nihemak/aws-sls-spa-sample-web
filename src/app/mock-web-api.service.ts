@@ -22,6 +22,11 @@ export class MockWebApiService implements InMemoryDbService {
 
   public responseInterceptor(responseOptions: any, requestInfo: any): any {
     if (requestInfo.collectionName === 'todos' &&
+        requestInfo.method === 'put' &&
+        responseOptions.status === 204) {
+      responseOptions.body = requestInfo.collection.find((todo: Todo) => todo.id === requestInfo.id);
+    }
+    if (requestInfo.collectionName === 'todos' &&
         requestInfo.method === 'delete' &&
         responseOptions.status === 204) {
       responseOptions.body = requestInfo.id;
