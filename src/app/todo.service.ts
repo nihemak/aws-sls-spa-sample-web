@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Todo } from './todo';
-import * as UUID from 'uuid';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -28,13 +27,7 @@ export class TodoService {
 
   addTodo(text: string): Observable<Todo> {
     const url = this.baseUrl + 'todos';
-    const todo = {
-      id: UUID.v4(),
-      text,
-      checked: false,
-      createdAt: new Date().getTime(),
-      updatedAt: new Date().getTime()
-    };
+    const todo = { text };
     return this.http.post<Todo>(url, todo);
   }
 

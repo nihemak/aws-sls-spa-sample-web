@@ -20,6 +20,14 @@ export class MockWebApiService implements InMemoryDbService {
     return UUID.v4();
   }
 
+  post(requestInfo: any): any {
+    if (requestInfo.collectionName === 'todos') {
+      requestInfo.req.body.checked = false;
+      requestInfo.req.body.createdAt = new Date().getTime();
+      requestInfo.req.body.updatedAt = new Date().getTime();
+    }
+  }
+
   public responseInterceptor(responseOptions: any, requestInfo: any): any {
     if (requestInfo.collectionName === 'todos' &&
         requestInfo.method === 'put' &&
