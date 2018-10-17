@@ -28,6 +28,23 @@ export class MockWebApiService implements InMemoryDbService {
     }
   }
 
+  put(requestInfo: any): any {
+    if (requestInfo.collectionName === 'todos') {
+      const todo = requestInfo.collection.find((todo: Todo) => todo.id === requestInfo.id);
+      if (todo) {
+        requestInfo.req.body.id = todo.id;
+        if (! ('checked' in requestInfo.req.body)) {
+          requestInfo.req.body.checked = todo.checked;
+        }
+        if (! ('text' in requestInfo.req.body)) {
+          requestInfo.req.body.text = todo.text;
+        }
+        requestInfo.req.body.createdAt = todo.createdAt;
+        requestInfo.req.body.updatedAt = new Date().getTime();
+      }
+    }
+  }
+
   public responseInterceptor(responseOptions: any, requestInfo: any): any {
     if (requestInfo.collectionName === 'todos' &&
         requestInfo.method === 'put' &&

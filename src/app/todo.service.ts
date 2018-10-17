@@ -33,21 +33,13 @@ export class TodoService {
 
   updateTodo(id: string, text: string): Observable<Todo|undefined> {
     const url = this.baseUrl + 'todos/' + id;
-    const todo = {
-      id,
-      text: text,
-      updatedAt: new Date().getTime()
-    };
+    const todo = { text };
     return this.http.put<Todo>(url, todo, httpOptions);
   }
 
   doneTodo(id: string): Observable<Todo|undefined> {
     const url = this.baseUrl + 'todos/' + id;
-    const todo = {
-      id,
-      checked: true,
-      updatedAt: new Date().getTime()
-    };
+    const todo = { checked: true };
     return this.http.put<Todo>(url, todo, httpOptions);
   }
 
