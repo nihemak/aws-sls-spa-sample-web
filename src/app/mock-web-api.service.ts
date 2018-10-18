@@ -106,7 +106,7 @@ export class MockWebApiService implements InMemoryDbService {
 
   put(requestInfo: any): any {
     if (requestInfo.collectionName === 'todos') {
-      const todo = requestInfo.collection.find((todo: Todo) => todo.id === requestInfo.id);
+      const todo = requestInfo.collection.find((t: Todo) => t.id === requestInfo.id);
       if (todo) {
         requestInfo.req.body.id = todo.id;
         if (! ('checked' in requestInfo.req.body)) {
