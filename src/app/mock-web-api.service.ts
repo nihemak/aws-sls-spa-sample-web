@@ -92,6 +92,7 @@ export class MockWebApiService implements InMemoryDbService {
 
   public parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
     const replacedUrl = url.replace('v1/todos', 'todos');
+
     return utils.parseRequestUrl(replacedUrl);
   }
 
@@ -131,6 +132,7 @@ export class MockWebApiService implements InMemoryDbService {
         responseOptions.status === 204) {
       responseOptions.body = requestInfo.id;
     }
+
     return responseOptions;
   }
 }
