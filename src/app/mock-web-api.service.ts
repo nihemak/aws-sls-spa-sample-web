@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { InMemoryDbService } from 'angular-in-memory-web-api';
+import { InMemoryDbService, ParsedRequestUrl, RequestInfoUtilities } from 'angular-in-memory-web-api';
 
 import { Todo } from './todo';
 import { TODOS } from './mock-todos';
@@ -18,6 +18,11 @@ export class MockWebApiService implements InMemoryDbService {
 
   genId(_todos: Todo[]): string {
     return UUID.v4();
+  }
+
+  public parseRequestUrl(url: string, utils: RequestInfoUtilities): ParsedRequestUrl {
+    const replacedUrl = url.replace('v1/todos', 'todos');
+    return utils.parseRequestUrl(replacedUrl);
   }
 
   post(requestInfo: any): any {
