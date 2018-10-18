@@ -80,13 +80,13 @@ export class MockWebApiService implements InMemoryDbService {
         updatedAt: new Date().getTime()
       }
     ]
-  }
+  };
 
   public createDb(): any {
     return this.api;
   }
 
-  genId(_todos: Todo[]): string {
+  genId(_todos: Array<Todo>): string {
     return UUID.v4();
   }
 

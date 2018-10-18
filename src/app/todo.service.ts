@@ -17,12 +17,12 @@ export class TodoService {
 
   getTodos(): Observable<Array<Todo>> {
     const url = this.baseUrl + 'v1/todos';
-    return this.http.get<Todo[]>(url)
+    return this.http.get<Array<Todo>>(url);
   }
 
   getTodo(id: string): Observable<Todo|undefined> {
     const url = this.baseUrl + 'v1/todos/' + id;
-    return this.http.get<Todo>(url)
+    return this.http.get<Todo>(url);
   }
 
   addTodo(text: string): Observable<Todo> {
