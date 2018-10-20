@@ -25,7 +25,7 @@ const imports = [
   AppRoutingModule,
   StoreModule.forRoot(reducers),
   EffectsModule.forRoot([TodoEffects]),
-  HttpClientModule,
+  HttpClientModule
 ];
 if (environment.apiBaseUrl === 'mock-server') {
   imports.push(HttpClientInMemoryWebApiModule.forRoot(MockWebApiService));
@@ -37,7 +37,7 @@ if (environment.apiBaseUrl === 'mock-server') {
     TodosComponent,
     TodoEditorComponent
   ],
-  imports: imports,
+  imports,
   providers: [MockWebApiService],
   bootstrap: [AppComponent]
 })
