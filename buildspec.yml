@@ -6,6 +6,7 @@ phases:
       - npm install
   build:
     commands:
+      - ./bin/pre_build.sh
       - ng build --prod
   post_build:
     commands:
