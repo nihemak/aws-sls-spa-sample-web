@@ -49,9 +49,9 @@ export class TodoService {
     return this.http.put<Todo>(url, todo, httpOptions);
   }
 
-  deleteTodo(id: string): Observable<string> {
+  deleteTodo(id: string): Observable<{ id: string }> {
     const url = `${this.baseUrl}v1/todos/${id}`;
 
-    return this.http.delete<string>(url, httpOptions);
+    return this.http.delete<{ id: string }>(url, httpOptions);
   }
 }

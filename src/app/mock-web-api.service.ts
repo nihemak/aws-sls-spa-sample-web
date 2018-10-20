@@ -130,7 +130,7 @@ export class MockWebApiService implements InMemoryDbService {
     if (requestInfo.collectionName === 'todos' &&
         requestInfo.method === 'delete' &&
         responseOptions.status === 204) {
-      responseOptions.body = requestInfo.id;
+      responseOptions.body = { id: requestInfo.id };
     }
 
     return responseOptions;
