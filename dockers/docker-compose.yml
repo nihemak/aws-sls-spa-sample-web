@@ -5,5 +5,7 @@ services:
     tty: true
     ports:
       - 4200:4200
+    environment:
+      API_BASE_URL: 'mock-server'
     volumes:
       - ../:/src/

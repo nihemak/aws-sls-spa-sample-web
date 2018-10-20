@@ -9,7 +9,7 @@
     "docker-up-dev": "npm run docker-compose -- up -d && npm run docker-exec-ng -- npm install",
     "docker-down": "npm run docker-compose -- down",
     "docker-test-all": "npm run docker-down && npm run docker-up-dev && npm run docker-exec-ng -- npm run test-all && npm run docker-down",
-    "docker-serve": "npm run docker-exec-ng -- ng serve --host=0.0.0.0",
+    "docker-serve": "npm run docker-exec-ng -- ./bin/pre_build.sh && npm run docker-exec-ng -- ng serve --host=0.0.0.0",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
