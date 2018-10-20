@@ -13,7 +13,7 @@
     "docker-serve": "npm run docker-exec-ng -- ./bin/pre_build.sh && npm run docker-exec-ng -- ng serve --host=0.0.0.0",
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "./bin/pre_build.sh && ng build",
     "test": "ng test",
     "lint": "ng lint",
     "lint-fix": "ng lint --fix",
