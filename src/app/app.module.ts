@@ -15,7 +15,21 @@ import { AppComponent } from './app.component';
 import { TodosComponent } from './todos/todos.component';
 import { TodoEditorComponent } from './todo-editor/todo-editor.component';
 
+import { environment } from '../environments/environment';
 import { MockWebApiService } from './mock-web-api.service';
+
+const imports = [
+  BrowserModule,
+  FormsModule,
+  ReactiveFormsModule,
+  AppRoutingModule,
+  StoreModule.forRoot(reducers),
+  EffectsModule.forRoot([TodoEffects]),
+  HttpClientModule,
+];
+if (environment.apiBaseUrl === 'mock-server') {
+  imports.push(HttpClientInMemoryWebApiModule.forRoot(MockWebApiService));
+}
 
 @NgModule({
   declarations: [
@@ -23,16 +37,7 @@ import { MockWebApiService } from './mock-web-api.service';
     TodosComponent,
     TodoEditorComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([TodoEffects]),
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(MockWebApiService)
-  ],
+  imports: imports,
   providers: [MockWebApiService],
   bootstrap: [AppComponent]
 })
