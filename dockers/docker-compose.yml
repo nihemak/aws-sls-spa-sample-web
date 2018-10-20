@@ -5,5 +5,13 @@ services:
     tty: true
     ports:
       - 4200:4200
+    environment:
+      API_BASE_URL: 'mock-server'
     volumes:
       - ../:/src/
+  shellcheck:
+    image: koalaman/shellcheck-alpine
+    tty: true
+    volumes:
+      - ../bin/:/scripts/
+      - ./shellcheck/bin/shellcheck.sh:/shellcheck.sh

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../environments/environment';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Todo } from './todo';
@@ -11,7 +12,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class TodoService {
-  private baseUrl = 'mock-server/';
+  private baseUrl = `${environment.apiBaseUrl}/`;
 
   constructor(private http: HttpClient) { }
 
