@@ -1,27 +1,47 @@
-<h2 i18n="@@TodosTitle">My Todos</h2>
+<div fxLayout="row">
+  <div fxFlex></div>
+  <div fxFlex>
+    <mat-toolbar class="header">
+      <button mat-fab (click)="getTodos()" i18n="@@UpdateButton" color="primary">
+        <mat-icon>update</mat-icon>
+      </button>
+      <span role="header" color='primary' i18n="@@TitleTodo">My Todos</span>
+    </mat-toolbar>
 
-<button (click)="getTodos()" i18n="@@UpdateButton">update</button>
+    <mat-card class="main-card">
+      <mat-card-content>
+        <mat-form-field class="field">
+          <input #newTodo matInput placeholder="todo">
+        </mat-form-field>
+        <button mat-fab (click)="addTodo(newTodo.value); newTodo.value = ''">
+          <i class="material-icons" i18n="@@IconAdd">add</i>
+        </button>
+      </mat-card-content>
 
-<div>
-  <label i18n="@@CreateText">text:
-    <input #newTodo placeholder="text">
-  </label>
-</div>
-<button (click)="addTodo(newTodo.value)" i18n="@@AddButton">add</button>
+      <mat-card-content>
+        <mat-checkbox [(ngModel)]="showDone"><span i18n="@@ShowDoneCheck">show done</span></mat-checkbox>
+      </mat-card-content>
 
-<div>
-  <input type="checkbox" [(ngModel)]="showDone"><span i18n="@@ShowDoneCheck">show done</span>
-</div>
+      <mat-card-content>
+        <mat-list>
+          <ng-container *ngFor="let todo of todos$ | async; trackBy: trackByTodos" >
+            <mat-list-item *ngIf="! todo.checked || showDone">
 
-<div *ngFor="let todo of todos$ | async; trackBy: trackByTodos">
-  <div *ngIf="! todo.checked || showDone">
-    <div>
-      <button (click)="doneTodo(todo.id)" i18n="@@DoneButton" [disabled]="todo.checked">done</button>
-      {{ todo.text }}
-    </div>
-    <div *ngIf="! todo.checked">
-      <app-todo-editor [todo]="todo"></app-todo-editor>
-      <button (click)="deleteTodo(todo.id)" i18n="@@DeleteButton">delete</button>
-    </div>
+              <button mat-mini-fab (click)="doneTodo(todo.id)" color="primary" [disabled]="todo.checked">
+                <mat-icon i18n="@@IconDone">done</mat-icon>
+              </button>
+
+              <app-todo-editor class="editor" [todo]="todo"></app-todo-editor>
+
+              <button mat-mini-fab (click)="deleteTodo(todo.id)" color="primary">
+                <mat-icon i18n="@@IconDeleteForever">delete_forever</mat-icon>
+              </button>
+
+            </mat-list-item>
+          </ng-container>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
   </div>
+  <div fxFlex></div>
 </div>

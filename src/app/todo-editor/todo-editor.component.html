@@ -1,5 +1,7 @@
-<label i18n="@@DetailText">
-  Text:
-  <input type="text" [formControl]="text">
-</label>
-<button (click)="updateText()" i18n="@@UpdateButton">update</button>
+<mat-form-field class="field">
+  <input matInput placeholder="Todo" [formControl]="text">
+</mat-form-field>
+
+<button mat-mini-fab (click)="updateText()" color="primary" [disabled]="todo.checked">
+  <mat-icon i18n="@@IconModeEdit">mode_edit</mat-icon>
+</button>
