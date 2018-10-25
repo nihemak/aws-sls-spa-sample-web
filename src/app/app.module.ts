@@ -5,6 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule,
@@ -33,6 +34,7 @@ import { MockWebApiService } from './mock-web-api.service';
 const imports = [
   BrowserModule,
   BrowserAnimationsModule,
+  FlexLayoutModule,
   FormsModule,
   ReactiveFormsModule,
   MatButtonModule,
