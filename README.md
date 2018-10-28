@@ -1,27 +1,84 @@
-# AwsSlsSpaSampleWeb
+# AWS Serverless SPA(Single Page Application) Sample: Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+[![CircleCI](https://circleci.com/gh/nihemak/aws-sls-spa-sample-web.svg?style=svg)](https://circleci.com/gh/nihemak/aws-sls-spa-sample-web)
 
-## Development server
+This is a sample to frontend with Angular. The repositories for sample of backend are [API](https://github.com/nihemak/aws-sls-spa-sample-api) and  [Infrastructure](https://github.com/nihemak/aws-sls-spa-sample-terraform).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+![Example usage](docs/screencast.gif)
 
-## Code scaffolding
+## Getting Started with Docker
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Clone the Repository:
 
-## Build
+```bash
+$ git clone https://github.com/nihemak/aws-sls-spa-sample-web.git sample-spa-web
+$ cd sample-spa-web
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Build docker environment:
 
-## Running unit tests
+```bash
+$ npm run docker-build
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Connect to in-memory-web-api
 
-## Running end-to-end tests
+Invoke `ng serve` in docker environment:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```bash
+$ npm run docker-up-dev
+$ npm run docker-serve
+```
 
-## Further help
+Access to frontend:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+http://localhost:4200/
+
+To stop the docker, execute the following:
+
+```bash
+$ npm run docker-down
+```
+
+### Connect to [aws-sls-spa-sample-api](https://github.com/nihemak/aws-sls-spa-sample-api)
+
+Start [aws-sls-spa-sample-api](https://github.com/nihemak/aws-sls-spa-sample-api) of Docker: 
+
+See: [aws-sls-spa-sample-api](https://github.com/nihemak/aws-sls-spa-sample-api).
+
+Change `API_BASE_URL` of environment variable in docker to [aws-sls-spa-sample-api](https://github.com/nihemak/aws-sls-spa-sample-api)'s URL('http://localhost:3000'):
+
+```bash
+$ git diff dockers/docker-compose.yml
+   angular:
+     build: ./angular
+     tty: true
+     ports:
+       - 4200:4200
+     environment:
+-      API_BASE_URL: 'mock-server'
++      API_BASE_URL: 'http://localhost:3000'
+     volumes:
+       - ../:/src/
+```
+
+Invoke `ng serve` in docker environment:
+
+```bash
+$ npm run docker-up-dev
+$ npm run docker-serve
+```
+
+Access to frontend:
+
+http://localhost:4200/
+
+To stop the docker, execute the following:
+
+```bash
+$ npm run docker-down
+```
+
+## Getting Started with AWS
+
+See: [aws-sls-spa-sample-terraform](https://github.com/nihemak/aws-sls-spa-sample-terraform).
