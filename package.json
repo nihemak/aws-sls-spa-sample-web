@@ -1,6 +1,6 @@
 {
   "name": "aws-sls-spa-sample-web",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "docker-compose": "docker-compose -f dockers/docker-compose.yml",
     "docker-exec-ng": "npm run docker-compose -- exec angular",
