@@ -7,6 +7,8 @@ services:
       - 4200:4200
     environment:
       API_BASE_URL: 'mock-server'
+      USER_POOL_ID: 'xxxxx'
+      USER_POOL_CLIENT_ID: 'xxxxx'
     volumes:
       - ../:/src/
     networks:

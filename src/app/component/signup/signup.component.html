@@ -1,0 +1,41 @@
+<div>
+  <div>
+    Signup
+  </div>
+  <div>
+    <div class="signup" *ngIf="!successfullySignup">
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmitSignup(signupForm.value)">
+        <div>
+          <label>email</label>
+          <input type="email" class="form-control" placeholder="Enter email" formControlName="email">
+        </div>
+        <div>
+          <label>password</label>
+          <input type="password" class="form-control" placeholder="Password" formControlName="password">
+        </div>
+        <button type="submit" class="btn btn-primary">Signup</button>
+      </form>
+    </div>
+
+    <p *ngIf="!successfullySignup">Click here to enter confirmation code</p>
+    <button (click)="successfullySignup = true" *ngIf="!successfullySignup" class="btn btn-secondary">Authentication with confirmation code
+    </button>
+
+    <div class="confirmation" *ngIf="successfullySignup">
+      <form [formGroup]="confirmationForm" (ngSubmit)="onSubmitConfirmation(confirmationForm.value)">
+        <div>
+          <label>email</label>
+          <input type="email" class="form-control" placeholder="Enter email" formControlName="email">
+        </div>
+
+        <div>
+          <label>confirmation code</label>
+          <input type="text" class="form-control" placeholder="Enter confirmationCode" formControlName="confirmationCode">
+        </div>
+        <button type="submit" class="btn btn-primary">Authentication</button>
+      </form>
+      <button (click)="successfullySignup = false" class="btn btn-secondary">Back</button>
+    </div>
+
+  </div>
+</div>
