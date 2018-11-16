@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, BehaviorSubject, from, of } from 'rxjs';
+import { BehaviorSubject, from, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import Amplify, { Auth } from 'aws-amplify';
 import { environment } from './../../environments/environment';
