@@ -13,6 +13,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatListModule,
+  MatMenuModule,
   MatToolbarModule
 } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
@@ -47,6 +48,7 @@ const imports = [
   MatToolbarModule,
   MatCardModule,
   MatIconModule,
+  MatMenuModule,
   AppRoutingModule,
   StoreModule.forRoot(reducers),
   EffectsModule.forRoot([TodoEffects]),
