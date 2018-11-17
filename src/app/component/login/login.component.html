@@ -1,12 +1,28 @@
-<div>
-  <div class="login-title">Login</div>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin(loginForm.value)">
-    <div>
-      <input type="email" placeholder="Enter email" formControlName="email">
-    </div>
-    <div>
-      <input type="password" placeholder="Password" formControlName="password">
-    </div>
-    <button type="submit" color="primary">Login</button>
-  </form>
+<div fxLayout="row">
+  <div fxFlex></div>
+  <div fxFlex>
+    <mat-card class="login-card">
+      <mat-card-header>
+        <mat-card-title class="login-title">Login</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin(loginForm.value)">
+          <div>
+            <mat-form-field class="login-field">
+              <input matInput type="email" placeholder="Enter email" formControlName="email">
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="login-field">
+              <input matInput type="password" placeholder="Password" formControlName="password">
+            </mat-form-field>
+          </div>
+          <div>
+            <button mat-raised-button class="login-field" type="submit" color="primary">Login</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex></div>
 </div>
