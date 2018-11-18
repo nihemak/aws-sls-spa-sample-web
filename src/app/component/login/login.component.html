@@ -3,7 +3,7 @@
   <div fxFlex>
     <mat-card class="login-card">
       <mat-card-header>
-        <mat-card-title class="login-title">Login</mat-card-title>
+        <mat-card-title class="login-title" i18n="@@LoginTitle">Login</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin(loginForm.value)">
@@ -18,7 +18,7 @@
             </mat-form-field>
           </div>
           <div>
-            <button mat-raised-button class="login-field" type="submit" color="primary">Login</button>
+            <button mat-raised-button class="login-field" type="submit" color="primary" i18n="@@LoginSubmit">Login</button>
           </div>
         </form>
       </mat-card-content>
