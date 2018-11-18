@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 import { Todo } from '../todo';
 import { AppState, getTodos } from '../store/reducers';
 import {
@@ -20,7 +21,8 @@ export class TodosComponent implements OnInit {
   showDone = false;
 
   constructor(
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private authService: AuthService
   ) {
     this.todos$ = store.pipe(select(getTodos));
   }
@@ -30,19 +32,31 @@ export class TodosComponent implements OnInit {
   }
 
   getTodos(): void {
-    this.store.dispatch(new TodoFindAll());
+    this.authService.getIdToken()
+      .then(token => {
+        this.store.dispatch(new TodoFindAll({ token }));
+      });
   }
 
   addTodo(text: string): void {
-    this.store.dispatch(new TodoCreate({ text }));
+    this.authService.getIdToken()
+      .then(token => {
+        this.store.dispatch(new TodoCreate({ token, text }));
+      });
   }
 
   doneTodo(id: string): void {
-    this.store.dispatch(new TodoDone({ id }));
+    this.authService.getIdToken()
+      .then(token => {
+        this.store.dispatch(new TodoDone({ token, id }));
+      });
   }
 
   deleteTodo(id: string): void {
-    this.store.dispatch(new TodoDelete({ id }));
+    this.authService.getIdToken()
+      .then(token => {
+        this.store.dispatch(new TodoDelete({ token, id }));
+      });
   }
 
   trackByTodos(_index: number, todo: Todo): string | undefined {

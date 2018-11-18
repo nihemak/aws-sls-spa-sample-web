@@ -13,6 +13,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatListModule,
+  MatMenuModule,
   MatToolbarModule
 } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
@@ -30,6 +31,8 @@ import { TodoEditorComponent } from './todo-editor/todo-editor.component';
 
 import { environment } from '../environments/environment';
 import { MockWebApiService } from './mock-web-api.service';
+import { LoginComponent } from './component/login/login.component';
+import { SignupComponent } from './component/signup/signup.component';
 
 const imports = [
   BrowserModule,
@@ -45,6 +48,7 @@ const imports = [
   MatToolbarModule,
   MatCardModule,
   MatIconModule,
+  MatMenuModule,
   AppRoutingModule,
   StoreModule.forRoot(reducers),
   EffectsModule.forRoot([TodoEffects]),
@@ -58,7 +62,9 @@ if (environment.apiBaseUrl === 'mock-server') {
   declarations: [
     AppComponent,
     TodosComponent,
-    TodoEditorComponent
+    TodoEditorComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports,
   providers: [MockWebApiService],

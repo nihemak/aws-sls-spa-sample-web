@@ -26,7 +26,7 @@ interface TodoAction extends Action {
 
 export class FindAll implements TodoAction {
   readonly type = FIND_ALL;
-  constructor(public payload?: any) {}
+  constructor(public payload: { token: string }) {}
 }
 
 export class FindAllSuccess implements TodoAction {
@@ -41,7 +41,7 @@ export class FindAllFail implements TodoAction {
 
 export class Create implements TodoAction {
   readonly type = CREATE;
-  constructor(public payload: { text: string }) {}
+  constructor(public payload: { token: string, text: string }) {}
 }
 
 export class CreateSuccess implements TodoAction {
@@ -56,7 +56,7 @@ export class CreateFail implements TodoAction {
 
 export class Done implements TodoAction {
   readonly type = DONE;
-  constructor(public payload: { id: string }) {}
+  constructor(public payload: { token: string, id: string }) {}
 }
 
 export class DoneSuccess implements TodoAction {
@@ -71,7 +71,7 @@ export class DoneFail implements TodoAction {
 
 export class Update implements TodoAction {
   readonly type = UPDATE;
-  constructor(public payload: { id: string, text: string }) {}
+  constructor(public payload: { token: string, id: string, text: string }) {}
 }
 
 export class UpdateSuccess implements TodoAction {
@@ -86,7 +86,7 @@ export class UpdateFail implements TodoAction {
 
 export class Delete implements TodoAction {
   readonly type = DELETE;
-  constructor(public payload: { id: string }) {}
+  constructor(public payload: { token: string, id: string }) {}
 }
 
 export class DeleteSuccess implements TodoAction {

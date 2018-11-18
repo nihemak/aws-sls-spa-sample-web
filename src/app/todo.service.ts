@@ -4,10 +4,6 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Todo } from './todo';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-
 @Injectable({
   providedIn: 'root'
 })
@@ -16,41 +12,77 @@ export class TodoService {
 
   constructor(private http: HttpClient) { }
 
-  getTodos(): Observable<Array<Todo>> {
+  getTodos(token: string): Observable<Array<Todo>> {
     const url = `${this.baseUrl}v1/todos`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token
+      })
+    };
 
-    return this.http.get<Array<Todo>>(url);
+    return this.http.get<Array<Todo>>(url, httpOptions);
   }
 
-  getTodo(id: string): Observable<Todo|undefined> {
+  getTodo(token: string, id: string): Observable<Todo|undefined> {
     const url = `${this.baseUrl}v1/todos/${id}`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token
+      })
+    };
 
-    return this.http.get<Todo>(url);
+    return this.http.get<Todo>(url, httpOptions);
   }
 
-  addTodo(text: string): Observable<Todo> {
+  addTodo(token: string, text: string): Observable<Todo> {
     const url = `${this.baseUrl}v1/todos`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token
+      })
+    };
     const todo = { text };
 
-    return this.http.post<Todo>(url, todo);
+    return this.http.post<Todo>(url, todo, httpOptions);
   }
 
-  updateTodo(id: string, text: string): Observable<Todo|undefined> {
+  updateTodo(token: string, id: string, text: string): Observable<Todo|undefined> {
     const url = `${this.baseUrl}v1/todos/${id}`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token
+      })
+    };
     const todo = { text };
 
     return this.http.put<Todo>(url, todo, httpOptions);
   }
 
-  doneTodo(id: string): Observable<Todo|undefined> {
+  doneTodo(token: string, id: string): Observable<Todo|undefined> {
     const url = `${this.baseUrl}v1/todos/${id}`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token
+      })
+    };
     const todo = { checked: true };
 
     return this.http.put<Todo>(url, todo, httpOptions);
   }
 
-  deleteTodo(id: string): Observable<{ id: string }> {
+  deleteTodo(token: string, id: string): Observable<{ id: string }> {
     const url = `${this.baseUrl}v1/todos/${id}`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token
+      })
+    };
 
     return this.http.delete<{ id: string }>(url, httpOptions);
   }
