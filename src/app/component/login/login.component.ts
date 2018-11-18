@@ -29,7 +29,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmitLogin(value: any): void {
-    const email = value.email, password = value.password;
+    const email = value.email;
+    const password = value.password;
     this.auth.signIn(email, password)
       .subscribe(
         _result => {

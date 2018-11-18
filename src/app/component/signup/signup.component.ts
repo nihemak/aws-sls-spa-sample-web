@@ -35,7 +35,8 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmitSignup(value: any): void {
-    const email = value.email, password = value.password;
+    const email = value.email;
+    const password = value.password;
     this.auth.signUp(email, password)
       .subscribe(
         _result => {
@@ -47,7 +48,8 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmitConfirmation(value: any): void {
-    const email = value.email, confirmationCode = value.confirmationCode;
+    const email = value.email;
+    const confirmationCode = value.confirmationCode;
     this.auth.confirmSignUp(email, confirmationCode)
       .subscribe(
         _result => {
