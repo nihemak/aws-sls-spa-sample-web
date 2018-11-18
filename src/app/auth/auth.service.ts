@@ -21,6 +21,7 @@ export class AuthService {
 
   public signUp(email: string, password: string): Observable<any> {
     this.password = password;
+
     return from(Auth.signUp(email, password, email));
   }
 
@@ -41,6 +42,7 @@ export class AuthService {
 
   public getIdToken(): string {
     const session: any = Auth.currentSession();
+
     return session['__zone_symbol__value']['idToken']['jwtToken'];
   }
 
@@ -49,10 +51,12 @@ export class AuthService {
       .pipe(
         map(_result => {
           this.loggedIn.next(true);
+
           return true;
         }),
         catchError(_error => {
           this.loggedIn.next(false);
+
           return of(false);
         })
       );
