@@ -40,10 +40,12 @@ export class AuthService {
     return from(Auth.currentAuthenticatedUser());
   }
 
-  public getIdToken(): string {
-    const session: any = Auth.currentSession();
-
-    return session['__zone_symbol__value']['idToken']['jwtToken'];
+  public getIdToken(): Promise<string> {
+    return Auth.currentSession()
+      .then(session => {
+        return session.getIdToken()
+          .getJwtToken();
+      });
   }
 
   public isAuthenticated(): Observable<boolean> {

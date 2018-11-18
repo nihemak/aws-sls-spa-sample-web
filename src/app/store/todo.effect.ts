@@ -36,10 +36,11 @@ export class TodoEffects {
 
   @Effect() findAll$: Observable<Action> = this.actions$.pipe(
     ofType<FindAll>(FIND_ALL),
-    switchMap(_action => {
+    switchMap(action => {
+      const { token } = action.payload;
 
       return this.todoService
-        .getTodos()
+        .getTodos(token)
         .pipe(
           map(todos => new FindAllSuccess({ todos })),
           catchError(error => of(new FindAllFail({ error })))
@@ -50,10 +51,10 @@ export class TodoEffects {
   @Effect() create$: Observable<Action> = this.actions$.pipe(
     ofType<Create>(CREATE),
     concatMap(action => {
-      const { text } = action.payload;
+      const { token, text } = action.payload;
 
       return this.todoService
-        .addTodo(text)
+        .addTodo(token, text)
         .pipe(
           map(todo => new CreateSuccess({ todo })),
           catchError(error => of(new CreateFail({ error })))
@@ -64,10 +65,10 @@ export class TodoEffects {
   @Effect() done: Observable<Action> = this.actions$.pipe(
     ofType<Done>(DONE),
     concatMap(action => {
-      const { id } = action.payload;
+      const { token, id } = action.payload;
 
       return this.todoService
-        .doneTodo(id)
+        .doneTodo(token, id)
         .pipe(
           map(todo => new DoneSuccess({ todo })),
           catchError(error => of(new DoneFail({ error })))
@@ -78,10 +79,10 @@ export class TodoEffects {
   @Effect() update: Observable<Action> = this.actions$.pipe(
     ofType<Update>(UPDATE),
     concatMap(action => {
-      const { id, text } = action.payload;
+      const { token, id, text } = action.payload;
 
       return this.todoService
-        .updateTodo(id, text)
+        .updateTodo(token, id, text)
         .pipe(
           map(todo => new UpdateSuccess({ todo })),
           catchError(error => of(new UpdateFail({ error })))
@@ -92,10 +93,10 @@ export class TodoEffects {
   @Effect() delete: Observable<Action> = this.actions$.pipe(
     ofType<Delete>(DELETE),
     concatMap(action => {
-      const { id } = action.payload;
+      const { token, id } = action.payload;
 
       return this.todoService
-        .deleteTodo(id)
+        .deleteTodo(token, id)
         .pipe(
           map(todo => new DeleteSuccess({ id: todo.id })),
           catchError(error => of(new DeleteFail({ error })))
