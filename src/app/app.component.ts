@@ -18,7 +18,7 @@ export class AppComponent {
     public auth: AuthService, private cdr: ChangeDetectorRef
   ) {
     this.username = localStorage.getItem(
-      environment.localstorageBaseKey + 'LastAuthUser'
+      `${environment.localstorageBaseKey}LastAuthUser`
     );
   }
 
@@ -31,7 +31,7 @@ export class AppComponent {
 
   ngAfterViewChecked(): void {
     this.username = localStorage.getItem(
-      environment.localstorageBaseKey + 'LastAuthUser'
+      `${environment.localstorageBaseKey}LastAuthUser`
     );
     this.cdr.detectChanges();
   }
