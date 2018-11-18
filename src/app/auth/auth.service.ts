@@ -62,7 +62,7 @@ export class AuthService {
       );
   }
 
-  public signOut() {
+  public signOut(): void {
     from(Auth.signOut())
       .subscribe(
         _result => {

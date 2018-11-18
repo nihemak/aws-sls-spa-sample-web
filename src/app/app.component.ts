@@ -22,27 +22,27 @@ export class AppComponent {
     );
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.subscription = this.auth.isAuthenticated()
       .subscribe(result => {
         this.loggedIn = result;
       });
   }
 
-  ngAfterViewChecked() {
+  ngAfterViewChecked(): void {
     this.username = localStorage.getItem(
       environment.localstorageBaseKey + 'LastAuthUser'
     );
     this.cdr.detectChanges();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
 
-  onClickLogout() {
+  onClickLogout(): void {
     this.auth.signOut();
   }
 }

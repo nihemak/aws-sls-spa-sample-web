@@ -17,18 +17,18 @@ export class LoginComponent implements OnInit {
     private auth: AuthService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.initForm();
   }
 
-  initForm() {
+  initForm(): void {
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
 
-  onSubmitLogin(value: any) {
+  onSubmitLogin(value: any): void {
     const email = value.email, password = value.password;
     this.auth.signIn(email, password)
       .subscribe(

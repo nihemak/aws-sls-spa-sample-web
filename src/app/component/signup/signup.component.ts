@@ -19,11 +19,11 @@ export class SignupComponent implements OnInit {
     private auth: AuthService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.initForm();
   }
 
-  initForm() {
+  initForm(): void {
     this.signupForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -34,7 +34,7 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  onSubmitSignup(value: any) {
+  onSubmitSignup(value: any): void {
     const email = value.email, password = value.password;
     this.auth.signUp(email, password)
       .subscribe(
@@ -46,7 +46,7 @@ export class SignupComponent implements OnInit {
         });
   }
 
-  onSubmitConfirmation(value: any) {
+  onSubmitConfirmation(value: any): void {
     const email = value.email, confirmationCode = value.confirmationCode;
     this.auth.confirmSignUp(email, confirmationCode)
       .subscribe(
