@@ -2,8 +2,8 @@
 <button mat-button [matMenuTriggerFor]="menu">Menu</button>
 <mat-menu #menu="matMenu">
   <a *ngIf="!(auth.loggedIn | async)" mat-menu-item [routerLink]="['/login']">Login</a>
-  <a mat-menu-item (click)="onClickLogout()">Logout</a>
-  <a mat-menu-item [routerLink]="['/signup']">Signup</a>
+  <a *ngIf=" (auth.loggedIn | async)" mat-menu-item (click)="onClickLogout()">Logout</a>
+  <a *ngIf="!(auth.loggedIn | async)" mat-menu-item [routerLink]="['/signup']">Signup</a>
 </mat-menu>
 <h1 i18n="@@Title">{{ title }}</h1>
 <router-outlet></router-outlet>

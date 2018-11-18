@@ -1,41 +1,52 @@
-<div>
-  <div>
-    Signup
-  </div>
-  <div>
-    <div class="signup" *ngIf="!successfullySignup">
-      <form [formGroup]="signupForm" (ngSubmit)="onSubmitSignup(signupForm.value)">
-        <div>
-          <label>email</label>
-          <input type="email" class="form-control" placeholder="Enter email" formControlName="email">
-        </div>
-        <div>
-          <label>password</label>
-          <input type="password" class="form-control" placeholder="Password" formControlName="password">
-        </div>
-        <button type="submit" class="btn btn-primary">Signup</button>
-      </form>
+<div fxLayout="row">
+    <div fxFlex></div>
+    <div fxFlex>
+      <mat-card class="signup-card">
+        <mat-card-header>
+          <mat-card-title class="signup-title">Signup</mat-card-title>
+        </mat-card-header>
+        <mat-card-content *ngIf="!successfullySignup">
+          <form [formGroup]="signupForm" (ngSubmit)="onSubmitSignup(signupForm.value)">
+            <div>
+              <mat-form-field class="signup-field">
+                <input matInput type="email" class="form-control" placeholder="Enter email" formControlName="email">
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field class="signup-field">
+                <input matInput type="password" class="form-control" placeholder="Password" formControlName="password">
+              </mat-form-field>
+            </div>
+            <div>
+              <button mat-raised-button type="submit" class="btn-primary signup-field" color="primary">Signup</button>
+            </div>
+          </form>
+        </mat-card-content>
+        <mat-card-content>
+          <p *ngIf="!successfullySignup">Click here to enter confirmation code</p>
+          <button mat-raised-button (click)="successfullySignup = true" *ngIf="!successfullySignup" class="btn-secondary signup-field">Authentication with confirmation code</button>
+        </mat-card-content>
+        <mat-card-content *ngIf="successfullySignup">
+          <form [formGroup]="confirmationForm" (ngSubmit)="onSubmitConfirmation(confirmationForm.value)">
+            <div>
+              <mat-form-field class="signup-field">
+                <input matInput type="email" class="form-control" placeholder="Enter email" formControlName="email">
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field class="signup-field">
+                <input matInput type="text" class="form-control" placeholder="Enter Confirmation Code" formControlName="confirmationCode">
+              </mat-form-field>
+            </div>
+            <div>
+              <button mat-raised-button type="submit" class="btn-primary signup-field" color="primary">Authentication</button>
+            </div>
+          </form>
+          <div>
+            <button mat-raised-button (click)="successfullySignup = false" class="btn-secondary signup-field">Back</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
     </div>
-
-    <p *ngIf="!successfullySignup">Click here to enter confirmation code</p>
-    <button (click)="successfullySignup = true" *ngIf="!successfullySignup" class="btn btn-secondary">Authentication with confirmation code
-    </button>
-
-    <div class="confirmation" *ngIf="successfullySignup">
-      <form [formGroup]="confirmationForm" (ngSubmit)="onSubmitConfirmation(confirmationForm.value)">
-        <div>
-          <label>email</label>
-          <input type="email" class="form-control" placeholder="Enter email" formControlName="email">
-        </div>
-
-        <div>
-          <label>confirmation code</label>
-          <input type="text" class="form-control" placeholder="Enter confirmationCode" formControlName="confirmationCode">
-        </div>
-        <button type="submit" class="btn btn-primary">Authentication</button>
-      </form>
-      <button (click)="successfullySignup = false" class="btn btn-secondary">Back</button>
-    </div>
-
-  </div>
+    <div fxFlex></div>
 </div>
