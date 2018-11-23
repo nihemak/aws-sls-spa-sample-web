@@ -14,11 +14,12 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "./bin/pre_build.sh && ng build",
+    "build-prod": "./bin/pre_build.sh && ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "lint-fix": "ng lint --fix",
     "e2e": "ng e2e",
-    "test-all": "npm-run-all lint build"
+    "test-all": "npm-run-all lint build-prod"
   },
   "private": true,
   "dependencies": {
