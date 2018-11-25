@@ -112,6 +112,7 @@ export class MockAuthService implements IAuthService {
 
   public signIn(_email: string, _password: string): Observable<any> {
     this.idSignIn = true;
+
     return of([])
       .pipe(
         tap(() => this.loggedIn.next(true))
@@ -128,6 +129,7 @@ export class MockAuthService implements IAuthService {
 
   public isAuthenticated(): Observable<boolean> {
     this.loggedIn.next(this.idSignIn);
+
     return of(this.idSignIn);
   }
 
