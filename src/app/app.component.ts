@@ -1,7 +1,8 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AuthService } from './auth/auth.service';
+
 import { environment } from '../environments/environment';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',

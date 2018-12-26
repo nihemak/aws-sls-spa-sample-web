@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { InMemoryDbService, ParsedRequestUrl, RequestInfoUtilities } from 'angular-in-memory-web-api';
 
-import { Todo } from './todo';
 import * as UUID from 'uuid';
+import { Todo } from './todo';
 
 @Injectable()
 export class MockWebApiService implements InMemoryDbService {
