@@ -20,7 +20,10 @@ export class AuthGuard implements CanActivate {
         .pipe(
           tap(loggedIn => {
             if (!loggedIn) {
-              this.router.navigate(['/login']);
+              this.router.navigate(['/login'])
+                .catch((error: any) => {
+                  console.warn(error);
+                });
             }
           })
         );

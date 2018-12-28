@@ -28,7 +28,10 @@ export class LoginComponent {
     this.auth.signIn(email, password)
       .subscribe(
         _result => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/'])
+            .catch((error: any) => {
+              console.warn(error);
+            });
         },
         error => {
           console.log(error);

@@ -37,6 +37,9 @@ export class TodosComponent implements OnInit {
     this.authService.getIdToken()
       .then(token => {
         this.store.dispatch(new TodoFindAll({ token }));
+      })
+      .catch((error: any) => {
+        console.warn(error);
       });
   }
 
@@ -44,6 +47,9 @@ export class TodosComponent implements OnInit {
     this.authService.getIdToken()
       .then(token => {
         this.store.dispatch(new TodoCreate({ token, text }));
+      })
+      .catch((error: any) => {
+        console.warn(error);
       });
   }
 
@@ -51,6 +57,9 @@ export class TodosComponent implements OnInit {
     this.authService.getIdToken()
       .then(token => {
         this.store.dispatch(new TodoDone({ token, id }));
+      })
+      .catch((error: any) => {
+        console.warn(error);
       });
   }
 
@@ -58,6 +67,9 @@ export class TodosComponent implements OnInit {
     this.authService.getIdToken()
       .then(token => {
         this.store.dispatch(new TodoDelete({ token, id }));
+      })
+      .catch((error: any) => {
+        console.warn(error);
       });
   }
 

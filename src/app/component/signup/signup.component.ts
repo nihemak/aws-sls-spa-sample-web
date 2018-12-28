@@ -53,7 +53,10 @@ export class SignupComponent implements OnInit {
     this.auth.confirmSignUp(email, confirmationCode)
       .subscribe(
         _result => {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/login'])
+            .catch((error: any) => {
+              console.warn(error);
+            });
         },
         error => {
           console.log(error);

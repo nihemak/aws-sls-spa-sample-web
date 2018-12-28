@@ -82,7 +82,10 @@ export class AuthService implements IAuthService {
       .subscribe(
         _result => {
           this.loggedIn.next(false);
-          this.router.navigate(['/login']);
+          this.router.navigate(['/login'])
+            .catch((error: any) => {
+              console.warn(error);
+            });
         },
         error => console.log(error)
       );
@@ -139,6 +142,9 @@ export class MockAuthService implements IAuthService {
   public signOut(): void {
     this.idSignIn = false;
     this.loggedIn.next(this.idSignIn);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login'])
+      .catch((error: any) => {
+        console.warn(error);
+      });
   }
 }

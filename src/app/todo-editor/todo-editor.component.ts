@@ -34,6 +34,9 @@ export class TodoEditorComponent implements OnInit {
         if (this.todo) {
           this.store.dispatch(new TodoUpdate({ token, id: this.todo.id, text: this.text.value }));
         }
+      })
+      .catch((error: any) => {
+        console.warn(error);
       });
   }
 }

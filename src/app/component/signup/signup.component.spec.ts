@@ -10,7 +10,10 @@ describe('SignupComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ SignupComponent ]
     })
-    .compileComponents();
+    .compileComponents()
+    .catch((error: any) => {
+      console.warn(error);
+    });
   }));
 
   beforeEach(() => {

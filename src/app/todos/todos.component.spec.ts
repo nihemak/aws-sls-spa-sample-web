@@ -10,7 +10,10 @@ describe('TodosComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ TodosComponent ]
     })
-    .compileComponents();
+    .compileComponents()
+    .catch((error: any) => {
+      console.warn(error);
+    });
   }));
 
   beforeEach(() => {
