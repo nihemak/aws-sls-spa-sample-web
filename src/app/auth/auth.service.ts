@@ -8,26 +8,27 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { environment } from './../../environments/environment';
 
-export interface IAuthService {
-  signUp(email: string, password: string): Observable<any>;
-  confirmSignUp(email: string, code: string): Observable<any>;
-  signIn(email: string, password: string): Observable<any>;
-  getData(): Observable<any>;
-  getIdToken(): Promise<string>;
-  isAuthenticated(): Observable<boolean>;
-  signOut(): void;
+export abstract class AuthService {
+  abstract signUp(email: string, password: string): Observable<any>;
+  abstract confirmSignUp(email: string, code: string): Observable<any>;
+  abstract signIn(email: string, password: string): Observable<any>;
+  abstract getData(): Observable<any>;
+  abstract getIdToken(): Promise<string>;
+  abstract isAuthenticated(): Observable<boolean>;
+  abstract signOut(): void;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService implements IAuthService {
+export class AuthServiceBasic extends AuthService {
   public loggedIn: BehaviorSubject<boolean>;
   password!: String;
 
   constructor(
     private readonly router: Router
   ) {
+    super();
     Amplify.configure(environment.amplify);
     this.loggedIn = new BehaviorSubject<boolean>(false);
   }
@@ -95,7 +96,7 @@ export class AuthService implements IAuthService {
 @Injectable({
   providedIn: 'root'
 })
-export class MockAuthService implements IAuthService {
+export class MockAuthService extends AuthService {
   public loggedIn: BehaviorSubject<boolean>;
   password!: String;
   idSignIn = false;
@@ -103,6 +104,7 @@ export class MockAuthService implements IAuthService {
   constructor(
     private readonly router: Router
   ) {
+    super();
     this.loggedIn = new BehaviorSubject<boolean>(false);
   }
 

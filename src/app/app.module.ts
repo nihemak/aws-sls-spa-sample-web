@@ -34,7 +34,7 @@ import { LoginComponent } from './component/login/login.component';
 import { SignupComponent } from './component/signup/signup.component';
 import { MockWebApiService } from './mock-web-api.service';
 
-import { AuthService, MockAuthService } from './auth/auth.service';
+import { AuthService, AuthServiceBasic, MockAuthService } from './auth/auth.service';
 
 const imports = [
   BrowserModule,
@@ -73,7 +73,7 @@ if (environment.apiBaseUrl === 'mock-server') {
     MockWebApiService,
     {
       provide: AuthService,
-      useClass: environment.amplify.Auth.userPoolId === 'Dummy' ? MockAuthService : AuthService
+      useClass: environment.amplify.Auth.userPoolId === 'Dummy' ? MockAuthService : AuthServiceBasic
     }
   ],
   bootstrap: [AppComponent]
