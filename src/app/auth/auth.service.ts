@@ -9,6 +9,10 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from './../../environments/environment';
 
 export abstract class AuthService {
+  public loggedIn: BehaviorSubject<boolean>;
+  constructor() {
+    this.loggedIn = new BehaviorSubject<boolean>(false);
+  }
   abstract signUp(email: string, password: string): Observable<any>;
   abstract confirmSignUp(email: string, code: string): Observable<any>;
   abstract signIn(email: string, password: string): Observable<any>;
@@ -22,7 +26,6 @@ export abstract class AuthService {
   providedIn: 'root'
 })
 export class AuthServiceBasic extends AuthService {
-  public loggedIn: BehaviorSubject<boolean>;
   password!: String;
 
   constructor(
@@ -30,7 +33,6 @@ export class AuthServiceBasic extends AuthService {
   ) {
     super();
     Amplify.configure(environment.amplify);
-    this.loggedIn = new BehaviorSubject<boolean>(false);
   }
 
   public signUp(email: string, password: string): Observable<any> {
@@ -58,7 +60,7 @@ export class AuthServiceBasic extends AuthService {
 
   public async getIdToken(): Promise<string> {
     return Auth.currentSession()
-      .then(session => {
+      .then((session: any) => {
         return session.getIdToken()
           .getJwtToken();
       });
@@ -101,7 +103,6 @@ export class AuthServiceBasic extends AuthService {
   providedIn: 'root'
 })
 export class MockAuthService extends AuthService {
-  public loggedIn: BehaviorSubject<boolean>;
   password!: String;
   idSignIn = false;
 
@@ -109,7 +110,6 @@ export class MockAuthService extends AuthService {
     private readonly router: Router
   ) {
     super();
-    this.loggedIn = new BehaviorSubject<boolean>(false);
   }
 
   public signUp(_email: string, password: string): Observable<any> {
