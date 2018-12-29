@@ -46,7 +46,9 @@ export class AuthServiceBasic extends AuthService {
   public signIn(email: string, password: string): Observable<any> {
     return from(Auth.signIn(email, password))
       .pipe(
-        tap(() => this.loggedIn.next(true))
+        tap(() => {
+          this.loggedIn.next(true);
+        })
       );
   }
 
@@ -88,7 +90,9 @@ export class AuthServiceBasic extends AuthService {
               console.warn(error);
             });
         },
-        error => console.log(error)
+        error => {
+          console.log(error);
+        }
       );
   }
 }
@@ -123,7 +127,9 @@ export class MockAuthService extends AuthService {
 
     return of([])
       .pipe(
-        tap(() => this.loggedIn.next(true))
+        tap(() => {
+          this.loggedIn.next(true);
+        })
       );
   }
 
