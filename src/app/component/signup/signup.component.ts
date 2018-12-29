@@ -14,9 +14,9 @@ export class SignupComponent implements OnInit {
   public successfullySignup?: boolean;
 
   constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private auth: AuthService
+    private readonly fb: FormBuilder,
+    private readonly router: Router,
+    private readonly auth: AuthService
   ) { }
 
   ngOnInit(): void {

@@ -23,8 +23,8 @@ export class TodosComponent implements OnInit {
   showDone = false;
 
   constructor(
-    private store: Store<AppState>,
-    private authService: AuthService
+    private readonly store: Store<AppState>,
+    private readonly authService: AuthService
   ) {
     this.todos$ = store.pipe(select(getTodos));
   }

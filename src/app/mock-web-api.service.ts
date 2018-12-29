@@ -7,7 +7,7 @@ import { Todo } from './todo';
 
 @Injectable()
 export class MockWebApiService implements InMemoryDbService {
-  private api: any = {
+  private readonly api: any = {
     todos: [
       {
         id: 'bc55004d-6bf3-45ba-a785-a2c2b62b24d8',

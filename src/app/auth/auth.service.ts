@@ -26,7 +26,7 @@ export class AuthService implements IAuthService {
   password!: String;
 
   constructor(
-    private router: Router
+    private readonly router: Router
   ) {
     Amplify.configure(environment.amplify);
     this.loggedIn = new BehaviorSubject<boolean>(false);
@@ -101,7 +101,7 @@ export class MockAuthService implements IAuthService {
   idSignIn = false;
 
   constructor(
-    private router: Router
+    private readonly router: Router
   ) {
     this.loggedIn = new BehaviorSubject<boolean>(false);
   }

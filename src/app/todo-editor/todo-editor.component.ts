@@ -18,8 +18,8 @@ export class TodoEditorComponent implements OnInit {
   text = new FormControl('');
 
   constructor(
-    private store: Store<AppState>,
-    private authService: AuthService
+    private readonly store: Store<AppState>,
+    private readonly authService: AuthService
   ) { }
 
   ngOnInit(): void {

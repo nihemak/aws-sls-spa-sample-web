@@ -16,7 +16,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewChecked {
   public loggedIn?: boolean;
 
   constructor(
-    public auth: AuthService, private cdr: ChangeDetectorRef
+    public auth: AuthService, private readonly cdr: ChangeDetectorRef
   ) {
     this.username = localStorage.getItem(
       `${environment.localstorageBaseKey}LastAuthUser`

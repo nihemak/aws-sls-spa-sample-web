@@ -8,9 +8,9 @@ import { Todo } from './todo';
   providedIn: 'root'
 })
 export class TodoService {
-  private baseUrl = `${environment.apiBaseUrl}/`;
+  private readonly baseUrl = `${environment.apiBaseUrl}/`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) { }
 
   getTodos(token: string): Observable<Array<Todo>> {
     const url = `${this.baseUrl}v1/todos`;
