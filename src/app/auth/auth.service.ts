@@ -56,7 +56,7 @@ export class AuthServiceBasic extends AuthService {
     return from(Auth.currentAuthenticatedUser());
   }
 
-  public getIdToken(): Promise<string> {
+  public async getIdToken(): Promise<string> {
     return Auth.currentSession()
       .then(session => {
         return session.getIdToken()
@@ -137,7 +137,7 @@ export class MockAuthService extends AuthService {
     return of([]);
   }
 
-  public getIdToken(): Promise<string> {
+  public async getIdToken(): Promise<string> {
     return Promise.resolve('dummyToken');
   }
 
