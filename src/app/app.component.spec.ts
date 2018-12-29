@@ -11,7 +11,10 @@ describe('AppComponent', () => {
         AppComponent
       ]
     })
-    .compileComponents();
+    .compileComponents()
+    .catch((error: any) => {
+      console.warn(error);
+    });
   }));
   it('should create the app', async(() => {
     const fixture = TestBed.createComponent(AppComponent);

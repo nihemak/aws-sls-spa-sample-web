@@ -30,8 +30,8 @@ import {
 @Injectable()
 export class TodoEffects {
   constructor(
-    private actions$: Actions,
-    private todoService: TodoService
+    private readonly actions$: Actions,
+    private readonly todoService: TodoService
   ) { }
 
   @Effect() findAll$: Observable<Action> = this.actions$.pipe(

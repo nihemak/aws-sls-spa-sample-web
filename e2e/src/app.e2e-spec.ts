@@ -8,8 +8,14 @@ describe('workspace-project App', () => {
   });
 
   it('should display welcome message', () => {
-    page.navigateTo();
+    page.navigateTo()
+      .catch((error: any) => {
+        console.warn(error);
+      });
     expect(page.getParagraphText())
-      .toEqual('Welcome to aws-sls-spa-sample-web!');
+      .toEqual('Welcome to aws-sls-spa-sample-web!')
+      .catch((error: any) => {
+        console.warn(error);
+      });
   });
 });

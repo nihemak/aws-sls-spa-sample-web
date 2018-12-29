@@ -14,9 +14,9 @@ export class SignupComponent implements OnInit {
   public successfullySignup?: boolean;
 
   constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private auth: AuthService
+    private readonly fb: FormBuilder,
+    private readonly router: Router,
+    private readonly auth: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -53,7 +53,10 @@ export class SignupComponent implements OnInit {
     this.auth.confirmSignUp(email, confirmationCode)
       .subscribe(
         _result => {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/login'])
+            .catch((error: any) => {
+              console.warn(error);
+            });
         },
         error => {
           console.log(error);

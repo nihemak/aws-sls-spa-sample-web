@@ -1,32 +1,38 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+
+import Amplify, { Auth } from 'aws-amplify';
+
 import { BehaviorSubject, from, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import Amplify, { Auth } from 'aws-amplify';
+
 import { environment } from './../../environments/environment';
 
-export interface IAuthService {
-  signUp(email: string, password: string): Observable<any>;
-  confirmSignUp(email: string, code: string): Observable<any>;
-  signIn(email: string, password: string): Observable<any>;
-  getData(): Observable<any>;
-  getIdToken(): Promise<string>;
-  isAuthenticated(): Observable<boolean>;
-  signOut(): void;
+export abstract class AuthService {
+  public loggedIn: BehaviorSubject<boolean>;
+  constructor() {
+    this.loggedIn = new BehaviorSubject<boolean>(false);
+  }
+  abstract signUp(email: string, password: string): Observable<any>;
+  abstract confirmSignUp(email: string, code: string): Observable<any>;
+  abstract signIn(email: string, password: string): Observable<any>;
+  abstract getData(): Observable<any>;
+  abstract getIdToken(): Promise<string>;
+  abstract isAuthenticated(): Observable<boolean>;
+  abstract signOut(): void;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService implements IAuthService {
-  public loggedIn: BehaviorSubject<boolean>;
+export class AuthServiceBasic extends AuthService {
   password!: String;
 
   constructor(
-    private router: Router
+    private readonly router: Router
   ) {
+    super();
     Amplify.configure(environment.amplify);
-    this.loggedIn = new BehaviorSubject<boolean>(false);
   }
 
   public signUp(email: string, password: string): Observable<any> {
@@ -42,7 +48,9 @@ export class AuthService implements IAuthService {
   public signIn(email: string, password: string): Observable<any> {
     return from(Auth.signIn(email, password))
       .pipe(
-        tap(() => this.loggedIn.next(true))
+        tap(() => {
+          this.loggedIn.next(true);
+        })
       );
   }
 
@@ -50,9 +58,9 @@ export class AuthService implements IAuthService {
     return from(Auth.currentAuthenticatedUser());
   }
 
-  public getIdToken(): Promise<string> {
+  public async getIdToken(): Promise<string> {
     return Auth.currentSession()
-      .then(session => {
+      .then((session: any) => {
         return session.getIdToken()
           .getJwtToken();
       });
@@ -79,9 +87,14 @@ export class AuthService implements IAuthService {
       .subscribe(
         _result => {
           this.loggedIn.next(false);
-          this.router.navigate(['/login']);
+          this.router.navigate(['/login'])
+            .catch((error: any) => {
+              console.warn(error);
+            });
         },
-        error => console.log(error)
+        error => {
+          console.log(error);
+        }
       );
   }
 }
@@ -89,15 +102,14 @@ export class AuthService implements IAuthService {
 @Injectable({
   providedIn: 'root'
 })
-export class MockAuthService implements IAuthService {
-  public loggedIn: BehaviorSubject<boolean>;
+export class MockAuthService extends AuthService {
   password!: String;
   idSignIn = false;
 
   constructor(
-    private router: Router
+    private readonly router: Router
   ) {
-    this.loggedIn = new BehaviorSubject<boolean>(false);
+    super();
   }
 
   public signUp(_email: string, password: string): Observable<any> {
@@ -115,7 +127,9 @@ export class MockAuthService implements IAuthService {
 
     return of([])
       .pipe(
-        tap(() => this.loggedIn.next(true))
+        tap(() => {
+          this.loggedIn.next(true);
+        })
       );
   }
 
@@ -123,7 +137,7 @@ export class MockAuthService implements IAuthService {
     return of([]);
   }
 
-  public getIdToken(): Promise<string> {
+  public async getIdToken(): Promise<string> {
     return Promise.resolve('dummyToken');
   }
 
@@ -136,6 +150,9 @@ export class MockAuthService implements IAuthService {
   public signOut(): void {
     this.idSignIn = false;
     this.loggedIn.next(this.idSignIn);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login'])
+      .catch((error: any) => {
+        console.warn(error);
+      });
   }
 }

@@ -9,8 +9,8 @@ import { AuthService } from './auth.service';
 })
 export class AuthGuard implements CanActivate {
   constructor(
-    private router: Router,
-    private auth: AuthService
+    private readonly router: Router,
+    private readonly auth: AuthService
   ) { }
 
   canActivate(
@@ -20,7 +20,10 @@ export class AuthGuard implements CanActivate {
         .pipe(
           tap(loggedIn => {
             if (!loggedIn) {
-              this.router.navigate(['/login']);
+              this.router.navigate(['/login'])
+                .catch((error: any) => {
+                  console.warn(error);
+                });
             }
           })
         );

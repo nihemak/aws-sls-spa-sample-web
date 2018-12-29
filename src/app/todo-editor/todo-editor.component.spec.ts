@@ -10,7 +10,10 @@ describe('TodoEditorComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ TodoEditorComponent ]
     })
-    .compileComponents();
+    .compileComponents()
+    .catch((error: any) => {
+      console.warn(error);
+    });
   }));
 
   beforeEach(() => {

@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment';
-import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 import { Todo } from './todo';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
-  private baseUrl = `${environment.apiBaseUrl}/`;
+  private readonly baseUrl = `${environment.apiBaseUrl}/`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) { }
 
   getTodos(token: string): Observable<Array<Todo>> {
     const url = `${this.baseUrl}v1/todos`;

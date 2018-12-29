@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
+
 import { AuthService } from '../auth/auth.service';
 import { Todo } from '../todo';
+
 import { AppState } from '../store/reducers';
 import { Update as TodoUpdate } from '../store/todo';
 
@@ -16,8 +18,8 @@ export class TodoEditorComponent implements OnInit {
   text = new FormControl('');
 
   constructor(
-    private store: Store<AppState>,
-    private authService: AuthService
+    private readonly store: Store<AppState>,
+    private readonly authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -32,6 +34,9 @@ export class TodoEditorComponent implements OnInit {
         if (this.todo) {
           this.store.dispatch(new TodoUpdate({ token, id: this.todo.id, text: this.text.value }));
         }
+      })
+      .catch((error: any) => {
+        console.warn(error);
       });
   }
 }

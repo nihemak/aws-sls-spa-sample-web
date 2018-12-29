@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+
 import { AuthService } from '../auth/auth.service';
 import { Todo } from '../todo';
+
 import { AppState, getTodos } from '../store/reducers';
 import {
   Create as TodoCreate,
@@ -21,8 +23,8 @@ export class TodosComponent implements OnInit {
   showDone = false;
 
   constructor(
-    private store: Store<AppState>,
-    private authService: AuthService
+    private readonly store: Store<AppState>,
+    private readonly authService: AuthService
   ) {
     this.todos$ = store.pipe(select(getTodos));
   }
@@ -35,6 +37,9 @@ export class TodosComponent implements OnInit {
     this.authService.getIdToken()
       .then(token => {
         this.store.dispatch(new TodoFindAll({ token }));
+      })
+      .catch((error: any) => {
+        console.warn(error);
       });
   }
 
@@ -42,6 +47,9 @@ export class TodosComponent implements OnInit {
     this.authService.getIdToken()
       .then(token => {
         this.store.dispatch(new TodoCreate({ token, text }));
+      })
+      .catch((error: any) => {
+        console.warn(error);
       });
   }
 
@@ -49,6 +57,9 @@ export class TodosComponent implements OnInit {
     this.authService.getIdToken()
       .then(token => {
         this.store.dispatch(new TodoDone({ token, id }));
+      })
+      .catch((error: any) => {
+        console.warn(error);
       });
   }
 
@@ -56,6 +67,9 @@ export class TodosComponent implements OnInit {
     this.authService.getIdToken()
       .then(token => {
         this.store.dispatch(new TodoDelete({ token, id }));
+      })
+      .catch((error: any) => {
+        console.warn(error);
       });
   }
 
