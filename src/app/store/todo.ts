@@ -115,7 +115,8 @@ const initialState: State = {
 /**
  * reducer
  */
-export const reducer = (state: State = initialState, action: TodoAction): State => {
+// tslint:disable-next-line:only-arrow-functions
+export function reducer(state: State = initialState, action: TodoAction): State {
   switch (action.type) {
     case FIND_ALL_SUCCESS: {
       return { ...state, todos: action.payload.todos };
@@ -147,4 +148,4 @@ export const reducer = (state: State = initialState, action: TodoAction): State 
     default:
       return { ...state };
   }
-};
+}
