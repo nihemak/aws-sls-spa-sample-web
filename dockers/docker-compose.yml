@@ -9,6 +9,7 @@ services:
       API_BASE_URL: 'mock-server'
       USER_POOL_ID: 'Dummy'
       USER_POOL_CLIENT_ID: 'Dummy'
+      NG_CLI_ANALYTICS: 'ci'
     volumes:
       - ../:/src/
     networks:
