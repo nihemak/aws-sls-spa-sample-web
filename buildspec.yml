@@ -1,8 +1,10 @@
 version: 0.2
 phases:
   install:
+    runtime-versions:
+      nodejs: 10
     commands:
-      - npm install --unsafe-perm -g @angular/cli@7.3.8
+      - npm install --unsafe-perm -g @angular/cli@8.1.2
       - npm install
   build:
     commands:
