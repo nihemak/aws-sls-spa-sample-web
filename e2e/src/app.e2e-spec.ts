@@ -7,15 +7,9 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo()
-      .catch((error: any) => {
-        console.warn(error);
-      });
-    expect(page.getParagraphText())
-      .toEqual('Welcome to aws-sls-spa-sample-web!')
-      .catch((error: any) => {
-        console.warn(error);
-      });
+  it('should display welcome message', async () => {
+    await page.navigateTo();
+    await expect(page.getParagraphText())
+      .toEqual('Todos');
   });
 });
