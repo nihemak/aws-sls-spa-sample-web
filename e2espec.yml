@@ -1,0 +1,22 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+    commands:
+      - curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+      - echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
+      - apt-get -y update
+      - apt-get -y install google-chrome-stable=76.0.3809.100-1
+      - npm install
+  build:
+    commands:
+      - npm run build
+      - ./bin/pre_codebuild_e2e.sh
+      - npm run e2e -- -c custom
+  post_build:
+    commands:
+      - touch e2e.fin
+artifacts:
+  files:
+    - e2e.fin

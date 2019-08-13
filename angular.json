@@ -112,6 +112,9 @@
           "configurations": {
             "production": {
               "devServerTarget": "aws-sls-spa-sample-web:serve:production"
+            },
+            "custom": {
+              "protractorConfig": "e2e/custom_protractor.conf.js"
             }
           }
         },
