@@ -1,6 +1,6 @@
-#!/bin/sh
+// Protractor configuration file, see link for more information
+// https://github.com/angular/protractor/blob/master/lib/config.ts
 
-cat << EOS > ./e2e/custom_protractor.conf.js
 const { SpecReporter } = require('jasmine-spec-reporter');
 
 exports.config = {
@@ -15,7 +15,7 @@ exports.config = {
     }
   },
   directConnect: true,
-  baseUrl: '${BASE_URL}',
+  baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
@@ -29,4 +29,3 @@ exports.config = {
     jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
   }
 };
-EOS

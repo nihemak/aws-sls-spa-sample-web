@@ -40,4 +40,3 @@ Thumbs.db
 
 /src/environments/environment.ts
 /src/environments/environment.prod.ts
-/e2e/custom_protractor.conf.js

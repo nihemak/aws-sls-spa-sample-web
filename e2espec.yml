@@ -8,12 +8,11 @@ phases:
       - echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
       - apt-get -y update
       - apt-get -y install google-chrome-stable=76.0.3809.100-1
+      - npm install --unsafe-perm -g @angular/cli@8.1.2
       - npm install
   build:
     commands:
-      - npm run build
-      - ./bin/pre_codebuild_e2e.sh
-      - npm run e2e -- -c custom
+      - npm run e2e-ci
   post_build:
     commands:
       - touch e2e.fin
